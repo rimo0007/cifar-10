@@ -51,7 +51,7 @@ def count_epochs(iterator):
                 steps_epoch /= FLAGS.num_epochs
                 break
 
-def _img_string_to_tensor(image_string, image_size=(299, 299)):
+def _img_string_to_tensor(image_string, image_size=(32, 32)):
     image_decoded = tf.image.decode_jpeg(image_string, channels=3)
     # Convert from full range of uint8 to range [0,1] of float32.
     image_decoded_as_float = tf.image.convert_image_dtype(image_decoded, dtype=tf.float32)
@@ -60,7 +60,7 @@ def _img_string_to_tensor(image_string, image_size=(299, 299)):
     
     return image_resized
 
-def make_input_fn(file_pattern, image_size=(299, 299), shuffle=False, batch_size=BATCH_SIZE, num_epochs=EPOCHS, buffer_size=4096):
+def make_input_fn(file_pattern, image_size=(32, 32), shuffle=False, batch_size=BATCH_SIZE, num_epochs=EPOCHS, buffer_size=4096):
     
     def _path_to_img(path):
         # Get the parent folder of this file to get it's class name
