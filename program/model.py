@@ -176,11 +176,11 @@ def train(_):
 
     input_img_size = hub.get_expected_image_size(hub.Module(TFHUB_CACHE_DIR))
 
-    train_files = os.path.join(DATA_DIR, 'train', '**/*.jpg')
+    train_files = os.path.join(DATA_DIR, 'train', '**/*.png')
     train_input_fn = make_input_fn(train_files, image_size=input_img_size, shuffle=True, batch_size=FLAGS.batch_size, num_epochs=FLAGS.num_epochs)
     train_spec = tf.estimator.TrainSpec(train_input_fn, max_steps=TF_TRAIN_STEPS)
 
-    eval_files = os.path.join(DATA_DIR, 'valid', '**/*.jpg')
+    eval_files = os.path.join(DATA_DIR, 'valid', '**/*.png')
     eval_input_fn = make_input_fn(eval_files, image_size=input_img_size, shuffle=False, batch_size=FLAGS.batch_size, num_epochs=FLAGS.num_epochs)
     eval_spec = tf.estimator.EvalSpec(eval_input_fn, steps=1, throttle_secs=1, start_delay_secs=1)
 
