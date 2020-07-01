@@ -96,7 +96,7 @@ def model_fn(features, labels, mode, params):
     bottleneck_tensor = module(features['inputs'])
 
     with tf.name_scope('final_retrain_ops'):
-        logits = tf.layers.dense(bottleneck_tensor, units=1, trainable=is_training)
+        logits = tf.layers.dense(bottleneck_tensor, units=6, trainable=is_training)
 
     def train_op_fn(loss):
         optimizer = tf.train.AdamOptimizer(learning_rate=FLAGS.learning_rate)
